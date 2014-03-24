@@ -1,0 +1,34 @@
+<h1><%= t :patients %></h1>
+
+<table>
+  <tr>
+    <th><%= t :name %></th>
+    <th><%= t :sex %></th>
+    <th><%= t :age %></th>
+    <th><%= t :height %></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+  <% @patients.each do |patient| %>
+      <tr>
+        <td class="link_no_dec"><%= link_to "#{patient.first_name} #{patient.last_name}", patient %></td>
+        <td><%= patient.sex %></td>
+        <td><%= patient.age %></td>
+        <td><%= patient.height %></td>
+        <% if can? :update, Patient %>
+            <td><%= link_to t(:edit), edit_patient_path(patient) %></td>
+        <% end %>
+        <% if can? :destroy, Patient %>
+            <td><%= link_to t(:destroy), patient, method: :delete, data: {confirm: t(:conf_delete)} %></td>
+        <% end %>
+      </tr>
+  <% end %>
+</table>
+
+<br/>
+
+<% if can? :create, Patient %>
+    <%= link_to t(:new_patient), new_patient_path %> |
+<% end %>
+<%= link_to t(:back), :back %>

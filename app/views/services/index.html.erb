@@ -1,0 +1,36 @@
+<h1><%= t(:services) %></h1>
+
+<table>
+  <tr>
+    <th><%= t(:name) %></th>
+    <th><%= t(:description_gen) %></th>
+    <th><%= t(:costs) %></th>
+    <th><%= t(:server_location) %></th>
+    <th><%= t(:owner) %></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+  <% @services.each do |service| %>
+      <tr>
+        <td class="link_no_dec"><%= link_to service.name, service %></td>
+        <td><%= service.description_general %></td>
+        <td><%= service.costs %></td>
+        <td><%= service.server_location %></td>
+        <td><%= service.owner.username %></td>
+        <% if can? :update, Service %>
+            <td><%= link_to t(:edit), edit_service_path(service) %></td>
+        <% end %>
+        <% if can? :destroy, Service %>
+            <td><%= link_to t(:destroy), service, method: :delete, data: {confirm: 'Are you sure?'} %></td>
+        <% end %>
+      </tr>
+  <% end %>
+</table>
+
+<br/>
+
+<% if can? :create, Service %>
+    <%= link_to t(:new_service), {:controller => :services, :action => :new, :owner_id => current_user.id} %> |
+<% end %>
+<%= link_to t(:back), :back %>

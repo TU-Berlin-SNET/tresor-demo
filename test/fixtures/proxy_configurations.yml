@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  name: MyString
+  ad_linkup: false
+  ldap_linkup: false
+  location_services: false
+  logging: false
+
+two:
+  name: MyString
+  ad_linkup: false
+  ldap_linkup: false
+  location_services: false
+  logging: false

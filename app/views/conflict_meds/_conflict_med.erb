@@ -1,0 +1,10 @@
+<tr>
+  <td class="link_no_dec"><%= link_to "#{conflict_med.medicament.name} & #{conflict_med.med.name}", conflict_med %></td>
+  <td><%= conflict_med.description %></td>
+  <% if can? :update, ConflictMed %>
+      <td><%= link_to t(:edit), edit_conflict_med_path(conflict_med) %></td>
+  <% end %>
+  <% if can? :destroy, ConflictMed %>
+      <td><%= link_to t(:destroy), conflict_med, method: :delete, data: {confirm: t(:conf_delete)} %></td>
+  <% end %>
+</tr>

@@ -1,4 +1,39 @@
-RailsApp::Application.routes.draw do
+Demonstrator::Application.routes.draw do
+
+  resources :subscriptions
+
+  resources :services
+
+  resources :site_configurations, :except => [:new, :create, :destroy, :index]
+
+  resources :proxy_configurations, :except => [:new, :create, :destroy, :index]
+
+  resources :broker_configurations, :except => [:new, :create, :destroy, :index]
+
+  resources :weights
+
+  resources :pulses
+
+  resources :blood_pressures
+
+  devise_for :users, :controllers => {:sessions => "sessions"}
+  resources :users
+
+  resources :barcodes
+
+  resources :conflict_meds
+
+  resources :conflict_illnesses
+
+  resources :medicaments
+
+  resources :illnesses
+
+  resources :patients
+
+  match '/searchfield' => 'search#searchfield'
+  match '/search' => 'search#search'
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
@@ -48,7 +83,7 @@ RailsApp::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  # root :to => 'welcome#index'
+  root :to => 'home#index'
 
   # See how all your routes lay out with "rake routes"
 

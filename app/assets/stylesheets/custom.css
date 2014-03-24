@@ -1,0 +1,370 @@
+body {
+    background-color: #8BADBD;
+}
+
+#container {
+    background-color: #fff;
+    margin-top: 40px;
+    margin-bottom: 30px;
+    padding: 20px;
+    border-radius: 5px;
+    -moz-box-shadow: 3px 3px 0.1em grey;
+    -webkit-box-shadow: 3px 3px 0.1em grey;
+    box-shadow: 3px 3px 0.1em grey;
+}
+
+#user_nav {
+    float: right;
+}
+
+#locale {
+    float: right;
+}
+
+#header {
+    background-color: #fff;
+}
+
+#header h2 {
+    margin-top: 5px;
+    margin-bottom: 0;
+}
+
+#content {
+    background-color: #fff;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+#footer {
+    background-color: #fff;
+}
+
+#footer_topbar {
+    height: 1px;
+    background-color: #565656;
+}
+
+#logo {
+    height: 75px;
+    float: left;
+    margin-right: 10px;
+    margin-bottom: 15px;
+}
+
+#logo_pills {
+    height: 75px;
+    float: left;
+    margin-right: 10px;
+    margin-bottom: 15px;
+}
+
+#conflict_wrapper {
+    padding-bottom: 20px;
+}
+
+#loading_animation {
+    display: none;
+    text-align: center;
+}
+
+.conflict_medicament_box {
+    background: rgba(255, 211, 36, 0.3);
+    width: auto;
+    margin: 5px;
+    padding: 2px 5px 0px 5px;
+}
+
+.conflict_header {
+    font-weight: bold;
+    margin-bottom: 2px;
+}
+
+#conflict_warning {
+    font-weight: bold;
+    font-size: medium;
+}
+
+#tabs {
+    margin-bottom: 20px;
+}
+
+#blood_pressure_chart {
+    width: 906px;
+    height: 300px;
+    margin-bottom: 30px;
+}
+
+#pulse_chart {
+    width: 906px;
+    height: 300px;
+    margin-bottom: 30px;
+}
+
+#weight_chart {
+    width: 906px;
+    height: 300px;
+    margin-bottom: 30px;
+}
+
+.field {
+    margin-bottom: 10px;
+}
+
+.link_no_dec a {
+    text-decoration: none;
+}
+
+.property_label {
+    font-weight: bold;
+    width: 1px;
+    white-space: nowrap;
+    vertical-align: top;
+}
+
+.property_value {
+    text-align: justify;
+}
+
+.standard_table {
+    padding-left: 0px;
+    margin-left: 0px;
+}
+
+.standard_table tbody tr:nth-child(even) td, tbody tr.even td {
+    background: #fff;
+}
+
+/* ---------- */
+/*  old Menu  */
+/* ---------- */
+#bottombar {
+    /* bar that runs across the bottom of the menu */
+    height: 2px;
+    background: #565656;
+}
+
+ul.semiopaquemenu {
+    /* main menu UL */
+    /*font: bold 14px Georgia ;*/
+    width: 100%;
+    background: #A5E1F7; /*#b1e958;*/
+    padding: 11px 0 8px 0; /* padding of the 4 sides of the menu */
+    margin: 0;
+    text-align: left; /* set value to "left", "center", or "right" to align menu accordingly */
+    -moz-border-radius-topleft: 3px;
+    -moz-border-radius-topright: 3px;
+    -webkit-border-top-left-radius: 3px;
+    -webkit-border-top-right-radius: 3px;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+}
+
+ul.semiopaquemenu li {
+    display: inline;
+}
+
+ul.semiopaquemenu li a {
+    color: black;
+    padding: 6px 8px 6px 8px; /* padding of the 4 sides of each menu link */
+    margin-right: 15px; /* spacing between each menu link */
+    text-decoration: none;
+}
+
+ul.semiopaquemenu li a:hover, ul.semiopaquemenu li a.selected {
+    color: black;
+    background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2ZmZmZmZiIgc3RvcC1vcGFjaXR5PSIwLjgyIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNmZmZmZmYiIHN0b3Atb3BhY2l0eT0iMC4xNiIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+); /* IE9+ SVG equivalent  of linear gradients */
+    background: -moz-linear-gradient(top, rgba(255, 255, 255, 0.82) 0%, rgba(255, 255, 255, 0.16) 100%); /* fade from white (0.82 opacty) to 0.16 opacity */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(255, 255, 255, 0.82)), color-stop(100%, rgba(255, 255, 255, 0.16)));
+    background: -webkit-linear-gradient(top, rgba(255, 255, 255, 0.82) 0%, rgba(255, 255, 255, 0.16) 100%);
+    background: -o-linear-gradient(top, rgba(255, 255, 255, 0.82) 0%, rgba(255, 255, 255, 0.16) 100%);
+    background: -ms-linear-gradient(top, rgba(255, 255, 255, 0.82) 0%, rgba(255, 255, 255, 0.16) 100%);
+    background: linear-gradient(top, rgba(255, 255, 255, 0.82) 0%, rgba(255, 255, 255, 0.16) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr = '#d1ffffff', endColorstr = '#29ffffff', GradientType = 0);
+    -moz-box-shadow: 0 0 5px #595959; /* CSS3 box shadows */
+    -webkit-box-shadow: 0 0 5px #595959;
+    box-shadow: 0 0 5px #595959;
+    padding-top: 14px; /* large padding to get menu item to protrude upwards */
+    padding-bottom: 14px; /* large padding to get menu item to protrude downwards */
+}
+
+/* ---------- */
+/*  new Menu  */
+/* ---------- */
+
+nav {
+    font-family: Helvetica, sans-serif;
+    font-size: 14px;
+    height: 131px;
+}
+
+/* hide/show first dropdown menu */
+nav ul ul {
+    display: none;
+}
+
+nav ul li:hover > ul {
+    display: block;
+}
+
+/* style main menu bar */
+nav ul {
+    background: #efefef;
+    background: linear-gradient(top, #efefef 0%, #bbbbbb 100%);
+    background: -moz-linear-gradient(top, #efefef 0%, #bbbbbb 100%);
+    background: -webkit-linear-gradient(top, #efefef 0%, #bbbbbb 100%);
+    padding: 0 20px;
+    border-radius: 5px 5px 0px 0px;
+    list-style: none;
+    position: relative;
+    display: inline-table;
+    width: 910px;
+    z-index: 999;
+}
+
+nav ul:after {
+    content: "";
+    clear: both;
+    display: block;
+}
+
+/* style main list items */
+nav ul li {
+    float: left;
+}
+
+nav ul li:hover {
+    background: #4b545f;
+    background: linear-gradient(top, #4f5964 0%, #5f6975 40%);
+    background: -moz-linear-gradient(top, #4f5964 0%, #5f6975 40%);
+    background: -webkit-linear-gradient(top, #4f5964 0%, #5f6975 40%);
+}
+
+nav ul li:hover a {
+    color: #fff;
+}
+
+nav ul li a {
+    display: block;
+    padding: 10px 35px;
+    color: #757575;
+    text-decoration: none;
+}
+
+/* Style first dropdown menu */
+nav ul ul {
+    background: #5f6975;
+    border-radius: 0px;
+    padding: 0;
+    position: absolute;
+    top: 100%;
+    width: auto;
+}
+
+nav ul ul li {
+    float: none;
+    border-top: 1px solid #6b727c;
+    border-bottom: 1px solid #575f6a;
+    position: relative;
+}
+
+nav ul ul li a {
+    padding: 15px 40px;
+    color: #fff;
+}
+
+nav ul ul li a:hover {
+    background: #4b545f;
+}
+
+/* Style second dropdown menu | not used currently */
+nav ul ul ul {
+    position: absolute;
+    left: 100%;
+    top: 0;
+}
+
+/* ------------- */
+/*  Validations  */
+/* ------------- */
+.field_with_errors {
+    padding: 2px;
+    background-color: red;
+    display: table;
+}
+
+#error_explanation {
+    width: 450px;
+    border: 2px solid red;
+    padding: 7px;
+    padding-bottom: 0;
+    margin-bottom: 20px;
+    background-color: #f0f0f0;
+}
+
+#error_explanation h2 {
+    text-align: left;
+    font-weight: bold;
+    padding: 5px 5px 5px 15px;
+    font-size: 12px;
+    margin: -7px;
+    margin-bottom: 0px;
+    background-color: #c00;
+    color: #fff;
+}
+
+#error_explanation ul li {
+    font-size: 12px;
+    list-style: square;
+}
+
+/* ------------ */
+/*  Timepicker  */
+/* ------------ */
+.ui-timepicker-div .ui-widget-header {
+    margin-bottom: 8px;
+}
+
+.ui-timepicker-div dl {
+    text-align: left;
+}
+
+.ui-timepicker-div dl dt {
+    height: 25px;
+    margin-bottom: -25px;
+}
+
+.ui-timepicker-div dl dd {
+    margin: 0 10px 10px 65px;
+}
+
+.ui-timepicker-div td {
+    font-size: 90%;
+}
+
+.ui-tpicker-grid-label {
+    background: none;
+    border: none;
+    margin: 0;
+    padding: 0;
+}
+
+.ui-timepicker-rtl {
+    direction: rtl;
+}
+
+.ui-timepicker-rtl dl {
+    text-align: right;
+}
+
+.ui-timepicker-rtl dl dd {
+    margin: 0 65px 10px 10px;
+}
+
+
+/* ------------ */
+/* Devise login */
+/* ------------ */
+#position_header {
+    font-weight: bold;
+}

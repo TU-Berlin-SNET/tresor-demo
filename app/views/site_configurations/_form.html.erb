@@ -1,0 +1,17 @@
+<%= form_for(@site_configuration) do |f| %>
+    <%= render 'shared/error_messages', :object => f.object %>
+
+    <div class="field">
+      <%= f.label :name %>
+      <br/>
+      <%= f.text_field :name %>
+    </div>
+    <div class="field">
+      <%= f.label :geolocation_login %>
+      <br/>
+      <%= f.check_box :geolocation_login %>
+    </div>
+    <div class="actions">
+      <%= f.submit t(:save) %>
+    </div>
+<% end %>

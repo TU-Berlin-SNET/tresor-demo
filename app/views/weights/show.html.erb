@@ -1,0 +1,35 @@
+<h2><%= t(:weight) %></h2>
+
+<table class="standard_table">
+  <tr>
+    <td class="property_label">
+      <%= t(:patient) %>:
+    </td>
+    <td class="property_value">
+      <%= "#{@weight.patient.first_name} #{@weight.patient.last_name}" %>
+    </td>
+  </tr>
+
+  <tr>
+    <td class="property_label">
+      <%= t(:value) %>:
+    </td>
+    <td class="property_value">
+      <%= @weight.value %>
+    </td>
+  </tr>
+
+  <tr>
+    <td class="property_label">
+      <%= t(:date_weight) %>:
+    </td>
+    <td class="property_value">
+      <%= @weight.date %>
+    </td>
+  </tr>
+</table>
+
+<% if can? :update, Weight %>
+    <%= link_to t(:edit), edit_weight_path(@weight) %> |
+<% end %>
+<%= link_to t(:back), :back %>

@@ -1,0 +1,39 @@
+<h2><%= t(:subscription) %></h2>
+
+<table class="standard_table">
+  <tr>
+    <td class="property_label">
+      <%= t(:subscriber) %>:
+    </td>
+    <td class="property_value">
+      <%= @subscription.subscriber.username %>
+    </td>
+  </tr>
+
+  <tr>
+    <td class="property_label">
+      <%= t(:name) %>:
+    </td>
+    <td class="property_value">
+      <%= @subscription.service.name %>
+    </td>
+  </tr>
+
+  <tr>
+    <td class="property_label">
+      <%= t(:costs) %>:
+    </td>
+    <td class="property_value">
+      <%= @subscription.costs %>
+    </td>
+  </tr>
+</table>
+
+<% if can? :destroy, @subscription %>
+    <%= link_to t(:end_subscription), @subscription, method: :delete, data: {confirm: 'Are you sure?'} %> |
+<% end %>
+
+<% if can? :update, Subscription %>
+    <%= link_to t(:edit), edit_subscription_path(@subscription) %> |
+<% end %>
+<%= link_to t(:back), :back %>

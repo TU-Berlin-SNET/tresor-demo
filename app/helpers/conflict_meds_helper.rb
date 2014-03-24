@@ -1,0 +1,2 @@
+module ConflictMedsHelper
+end

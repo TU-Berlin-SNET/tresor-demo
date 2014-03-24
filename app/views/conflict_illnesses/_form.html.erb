@@ -1,0 +1,21 @@
+<%= form_for(@conflict_illness) do |f| %>
+    <%= render 'shared/error_messages', :object => f.object %>
+
+    <div class="field">
+      <%= f.label t(:medicament) %><br />
+      <%= f.collection_select(:medicament_id, Medicament.all, :id, :name, {:prompt => true})%>
+    </div>
+
+    <div class="field">
+      <%= f.label t(:illness) %><br />
+      <%= f.collection_select(:illness_id, Illness.all, :id, :name, {:prompt => true})%>
+    </div>
+
+  <div class="field">
+    <%= f.label t :description %><br />
+    <%= f.text_area :description %>
+  </div>
+  <div class="actions">
+    <%= f.submit t :save %>
+  </div>
+<% end %>

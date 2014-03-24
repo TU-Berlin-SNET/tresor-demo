@@ -1,0 +1,47 @@
+<% if !@cmi.nil? && @cmi.length > 0 || !@cmm.nil? && @cmm.length > 0 %>
+    <p id="conflict_warning"><%= t :warning_conflicts %></p>
+
+    <div class="conflict_medicament_box">
+      <p class="conflict_header"><%= t(:confl_illnesses) %></p>
+      <% if !@cmi.nil? && @cmi.length > 0 %>
+          <ul>
+            <% @cmi.each do |cmedill| %>
+                <% cmedill.conflict_illnesses.each do |ci| %>
+                    <li>
+                      <p><%= t :conflict %>
+                        : <%= link_to t(:med_with_illness, :med => ci.medicament.name, :ill => ci.illness.name), ci %></p>
+                    </li>
+                <% end %>
+            <% end %>
+          </ul>
+      <% else %>
+          <ul>
+            <li><%= t(:no_confl_exists) %></li>
+          </ul>
+      <% end %>
+    </div>
+
+    <div class="conflict_medicament_box">
+      <p class="conflict_header"><%= t(:confl_medicaments) %></p>
+      <% if !@cmm.nil? && @cmm.length > 0 %>
+          <ul>
+            <% @cmm.each do |cmedmed| %>
+                <% cmedmed.conflict_meds.each do |cm| %>
+                    <li>
+                      <p><%= t :conflict %>
+                        : <%= link_to t(:med_with_med, :med1 => cm.medicament.name, :med2 => cm.med.name), cm %></p>
+                    </li>
+                <% end %>
+            <% end %>
+          </ul>
+      <% else %>
+          <ul>
+            <li><%= t(:no_confl_exists) %></li>
+          </ul>
+      <% end %>
+    </div>
+
+<% else %>
+    <p><%= t(:no_confl_exists) %></p>
+<% end %>
+

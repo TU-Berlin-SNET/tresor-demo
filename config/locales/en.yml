@@ -2,4 +2,218 @@
 # See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
-  hello: "Hello world"
+
+# header.html
+  med_interaction:  "MED interaction"
+  tresor_project:   "TRESOR Project"
+  partners:         "Partners"
+  pdms:             "PDMS"
+  marketplace:      "Marketplace"
+  service_overview: "Service overview"
+  service_provide:  "Offer new service"
+  links:            "Links"
+  admin:            "Admin"
+  tresor_configuration: "TRESOR configuration"
+  home:             "Home"
+
+# index
+  welcome_heading:  "DEMONSTRATOR"
+  welcome_msg:      "Welcome to the TRESOR demonstrator"
+  demonstrator_title: "TRESOR Demonstrator"
+
+# illnesses:
+  name:             "Name"
+  description:      "Description"
+  edit_illness:     "Edit illness"
+  illnesses:        "Illnesses"
+  illness:          "Illness"
+  new_illness:      "New illness"
+
+# medicaments:
+  medicaments:      "Medicaments"
+  medicament:       "Medicament"
+  edit_medicament:  "Edit medicament"
+  new_medicament:   "New medicament"
+  medicament_data:  "Medicament data"
+
+# patients:
+  patients:         "Patients"
+  edit_patient:     "Edit patient"
+  new_patient:      "New patient"
+  patient_data:     "Patient data"
+  first_name:       "First name"
+  last_name:        "Last name"
+  sex:              "Sex"
+  age:              "Age"
+  height:           "Height (cm)"
+  body_surface_area: "Body surface area (m²)"
+  generate_barcode: "Generate barcode"
+  pat_no_meds:      "This patient consumes no medicaments"
+  pat_no_illnesses: "This patient has no illnesses"
+
+# conflicts in general
+  conflict:         "Conflict"
+  confl_with:       "Conflict with"
+  conflict_data:    "Conflict data"
+  no_confl_known:   "No conflicts known"
+  no_confl_exists:  "There are no conflicts"
+  warning_conflicts: "WARNING: There are conflicts with the medication of this patient!"
+  add_new_confl:    "Add new conflict"
+  check_conflicts:  "Check for conflicts"
+  loading:          "Loading ..."
+  contact_server:   "Contacting TRESOR-Server. Please wait ..."
+
+# conflict_illness:
+  confl_illness:    "Conflict with illness"
+  confl_illnesses:  "Conflicts with illnesses"
+  warning_illness:  "WARNING: One medicament has conflicts with illnesses!"
+  warning_illness_multi: "WARNING: %{number} medicaments have conflicts with illnesses!"
+  med_with_illness: "%{med} and %{ill}"
+  edit_confl_ill:   "Edit conflict with illness"
+  new_confl_ill:    "New conflict with illness"
+
+# conflict_meds:
+  confl_medicament: "Conflict with medicament"
+  confl_medicaments: "Conflicts with medicaments"
+  edit_confl_med:   "Edit conflict with medicament"
+  new_confl_med:    "New conflict with medicament"
+  med_with_med:     "%{med1} and %{med2}"
+
+
+# CRUD
+  show:             "Show"
+  edit:             "Edit"
+  destroy:          "Destroy"
+  conf_delete:      "Are you sure?"
+  back:             "Back"
+  save:             "Save"
+
+# search
+  find_pat_by_code: "Find patient by code"
+  find:             "Find"
+
+# errors
+  prob_with_fields: "Following fields contain errors"
+
+# barcode
+  barcode_header:   "Barcode for: %{patient}"
+  number:           "Number"
+  expiration:       "Valid until"
+  new_barcode:      "New barcode"
+  barcodes:         "Barcodes"
+  edit_barcode:     "Edit barcode"
+  invalid_barcode:  "Invalid barcode"
+
+# blood pressure
+  blood_pressure:       "Blood pressure"
+  blood_pressures:      "Blood pressure values"
+  edit_blood_pressure:  "Edit blood pressure"
+  new_blood_pressure:   "New blood pressure"
+  systolic:             "Systolic"
+  diastolic:            "Diastolic"
+  date_bp:              "Date"
+
+# pulse
+  pulse:            "Pulse"
+  pulses:           "Pulse values"
+  edit_pulse:       "Edit pulse"
+  new_pulse:        "New pulse"
+  frequency:        "Frequency (per minute)"
+  date_pulse:       "Date"
+
+# weight
+  weight:           "Weight"
+  weights:          "Weight values"
+  value:            "Value (kg)"
+  date_weight:      "Date"
+  edit_weight:      "Edit weight"
+  new_weight:       "New weight"
+
+# proxy config
+  proxy_config:     "Proxy Configuration"
+  proxy_configs:    "Proxy Configurations"
+  new_proxy_config: "New proxy configuration"
+  edit_proxy_config: "Edit proxy configuration"
+  ad_linkup:        "ActiveDirectory link-up"
+  ldap_linkup:      "LDAP link-up"
+  location_services: "Location services"
+  logging:          "Logging"
+
+# broker config
+  broker_config:     "Broker configuration"
+  broker_configs:    "Broker configurations"
+  new_broker_config: "New broker configuration"
+  edit_broker_config: "Edit broker configuration"
+
+# site configuration
+  site_config:          "Site configuration"
+  site_configs:         "Site configurations"
+  edit_site_config:     "Edit site configuration"
+  new_site_config:      "New site configuration"
+  geolocation_login:    "Geolocation login"
+
+# service
+  service:              "Service"
+  services:             "Services"
+  new_service:          "New service"
+  edit_service:         "Edit service"
+  description_gen:      "General description"
+  description_tech:     "Technical description"
+  costs:                "Costs (Euro)"
+  server_location:      "Server location"
+  owner:                "Owner"
+  show_available_services: "Show available services"
+
+# subscription
+  subscription:         "Subscription"
+  subscriptions:        "Subscriptions"
+  new_subscription:     "New Subscription"
+  edit_subscription:    "Edit subscription"
+  subscriber:           "Subscriber"
+  subscribed_service:   "Subscribed service"
+  subscribed_services:  "Subscribed services"
+  end_subscription:     "End subscription"
+  bought_at:            "Subscribed on"
+  subscribe:            "Subscribe"
+  already_subscribed:   "You already subscribed to this service."
+
+# login
+  sign_up:                  "Register"
+  sign_in:                  "Log in"
+  sign_out:                 "Sign out"
+  sign_in_display_complete: "Signed in as %{name}"
+  sign_in_display_partial:  "Signed in as"
+  access_denied:            "Access denied. You don't have the proper rights to access this page"
+  your_position:            "Your position:"
+  latitude:                 "Latitude:"
+  longitude:                "Longitude:"
+  accuracy:                 "Accuracy (in m):"
+
+  devise:
+    sessions:
+      user:
+        invalid_location:         "Your position is invalid"
+        no_location:              "No location found"
+
+# user
+  user:                 "User"
+  users:                "Users"
+  username:             "Username"
+  email:                "Email"
+  account_of:           "Account of"
+  account_information:  "Account information"
+  no_subscribed_services: "You have no active subscriptions."
+  profile:              "Profile"
+  roles:                "Roles"
+
+  time:
+      formats:
+        best: ! '%d. %B %Y, %H:%M:%S'
+
+  activerecord:
+    errors:
+      models:
+        conflict_med:
+          attributes:
+            medicament_id:
+              meds_must_not_be_same: "Medicaments must not be the same"

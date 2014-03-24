@@ -1,0 +1,30 @@
+<h1><%= t :medicaments %></h1>
+
+<table>
+  <tr>
+    <th><%= t :name %></th>
+    <th><%= t :description %></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+  <% @medicaments.each do |medicament| %>
+      <tr>
+        <td class="link_no_dec"><%= link_to medicament.name, medicament %></td>
+        <td><%= medicament.description %></td>
+        <% if can? :update, Medicament %>
+            <td><%= link_to t(:edit), edit_medicament_path(medicament) %></td>
+        <% end %>
+        <% if can? :destroy, Medicament %>
+            <td><%= link_to t(:destroy), medicament, method: :delete, data: {confirm: t(:conf_delete)} %></td>
+        <% end %>
+      </tr>
+  <% end %>
+</table>
+
+<br/>
+
+<% if can? :create, Medicament %>
+    <%= link_to t(:new_medicament), new_medicament_path %> |
+<% end %>
+<%= link_to t(:back), :back %>

@@ -1,0 +1,35 @@
+<h1><%= t(:blood_pressures) %></h1>
+
+<table>
+  <tr>
+    <th><%= t :patient %></th>
+    <th><%= t :systolic %></th>
+    <th><%= t :diastolic %></th>
+    <th><%= t :date_bp %></th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+  <% @blood_pressures.each do |blood_pressure| %>
+      <tr>
+        <td><%= "#{blood_pressure.patient.first_name} #{blood_pressure.patient.last_name}" %></td>
+        <td><%= blood_pressure.systolic %></td>
+        <td><%= blood_pressure.diastolic %></td>
+        <td><%= blood_pressure.date %></td>
+        <td><%= link_to t(:show), blood_pressure %></td>
+        <% if can? :update, BloodPressure %>
+            <td><%= link_to t(:edit), edit_blood_pressure_path(blood_pressure) %></td>
+        <% end %>
+        <% if can? :destroy, BloodPressure %>
+            <td><%= link_to t(:destroy), blood_pressure, method: :delete, data: {confirm: 'Are you sure?'} %></td>
+        <% end %>
+      </tr>
+  <% end %>
+</table>
+
+<br/>
+<% if can? :create, BloodPressure %>
+    <%= link_to t(:new_blood_pressure), new_blood_pressure_path %>
+<% end %>
+<%= link_to t(:back), :back %>

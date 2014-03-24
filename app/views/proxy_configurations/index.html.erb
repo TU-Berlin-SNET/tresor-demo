@@ -1,0 +1,40 @@
+<h1><%= t(:proxy_configs) %></h1>
+
+<table>
+  <tr>
+    <th><%= t(:name) %></th>
+    <th><%= t(:ad_linkup) %></th>
+    <th><%= t(:ldap_linkup) %></th>
+    <th><%= t(:location_services) %></th>
+    <th><%= t(:logging) %></th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+  <% @proxy_configurations.each do |proxy_configuration| %>
+      <tr>
+        <td class="link_no_dec"><%= link_to proxy_configuration.name, proxy_configuration %></td>
+        <td><%= proxy_configuration.ad_linkup %></td>
+        <td><%= proxy_configuration.ldap_linkup %></td>
+        <td><%= proxy_configuration.location_services %></td>
+        <td><%= proxy_configuration.logging %></td>
+        <% if can? :read, ProxyConfiguration %>
+            <td><%= link_to t(:show), proxy_configuration %></td>
+        <% end %>
+        <% if can? :update, ProxyConfiguration %>
+            <td><%= link_to t(:edit), edit_proxy_configuration_path(proxy_configuration) %></td>
+        <% end %>
+        <% if can? :destroy, ProxyConfiguration %>
+            <td><%= link_to t(:destroy), proxy_configuration, method: :delete, data: {confirm: 'Are you sure?'} %></td>
+        <% end %>
+      </tr>
+  <% end %>
+</table>
+
+<br/>
+
+<% if can? :create, ProxyConfiguration %>
+    <%= link_to 'New Proxy configuration', new_proxy_configuration_path %>
+<% end %>
+<%= link_to t(:back), :back %>

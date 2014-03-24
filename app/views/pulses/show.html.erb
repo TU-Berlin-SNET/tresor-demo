@@ -1,0 +1,35 @@
+<h2><%= t(:pulse) %></h2>
+
+<table class="standard_table">
+  <tr>
+    <td class="property_label">
+      <%= t(:patient) %>:
+    </td>
+    <td class="property_value">
+      <%= "#{@pulse.patient.first_name} #{@pulse.patient.last_name}" %>
+    </td>
+  </tr>
+
+  <tr>
+    <td class="property_label">
+      <%= t(:frequency) %>:
+    </td>
+    <td class="property_value">
+      <%= @pulse.frequency %>
+    </td>
+  </tr>
+
+  <tr>
+    <td class="property_label">
+      <%= t(:date_pulse) %>:
+    </td>
+    <td class="property_value">
+      <%= @pulse.date %>
+    </td>
+  </tr>
+</table>
+
+<% if can? :update, Pulse %>
+    <%= link_to t(:edit), edit_pulse_path(@pulse) %> |
+<% end %>
+<%= link_to t(:back), :back %>

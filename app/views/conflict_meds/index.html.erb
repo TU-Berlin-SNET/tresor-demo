@@ -1,0 +1,19 @@
+<h1><%= t :confl_medicament %></h1>
+
+<table>
+  <tr>
+    <th><%= t :medicaments %></th>
+    <th><%= t :description %></th>
+  </tr>
+  <% unless @conflict_meds.empty? %>
+      <%= render @conflict_meds %>
+  <% end %>
+
+</table>
+
+<br />
+
+<% if can? :create, ConflictMed %>
+<%= link_to t(:new_confl_med), new_conflict_med_path %> |
+<% end %>
+<%= link_to t(:back), :back %>

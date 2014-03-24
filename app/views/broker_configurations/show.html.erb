@@ -1,0 +1,17 @@
+<h2><%= t(:broker_config) %></h2>
+
+<table class="standard_table">
+  <tr>
+    <td class="property_label">
+      <%= t(:name) %>:
+    </td>
+    <td class="property_value">
+      <%= @broker_configuration.name %>
+    </td>
+  </tr>
+</table>
+
+<% if can? :update, BrokerConfiguration %>
+    <%= link_to t(:edit), edit_broker_configuration_path(@broker_configuration) %> |
+<% end %>
+<%= link_to t(:back), :back %>

@@ -1,0 +1,43 @@
+<%= form_for(@service) do |f| %>
+    <%= render 'shared/error_messages', :object => f.object %>
+
+    <div class="field">
+      <%= f.label t(:name) %>
+      <br/>
+      <%= f.text_field :name %>
+    </div>
+    <div class="field">
+      <%= f.label t(:description_gen) %>
+      <br/>
+      <%= f.text_area :description_general %>
+    </div>
+    <div class="field">
+      <%= f.label t(:description_tech) %>
+      <br/>
+      <%= f.text_area :description_technical %>
+    </div>
+    <div class="field">
+      <%= f.label t(:costs) %>
+      <br/>
+      <%= f.text_field :costs %>
+    </div>
+    <div class="field">
+      <%= f.label t(:server_location) %>
+      <br/>
+      <%= f.text_field :server_location %>
+    </div>
+    <% if current_user.roles?(:admin) %>
+        <div class="field">
+          <%= f.label t(:owner) %>
+          <br/>
+          <%= f.collection_select(:owner_id, User.all, :id, :username, {:prompt => :true}) %>
+        </div>
+    <% else %>
+        <%= f.hidden_field :owner_id %>
+    <% end %>
+    <br />
+
+    <div class="actions">
+      <%= f.submit t(:save) %>
+    </div>
+<% end %>

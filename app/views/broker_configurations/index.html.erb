@@ -1,0 +1,28 @@
+<h1><%= t(:broker_configs) %></h1>
+
+<table>
+  <tr>
+    <th><%= t(:name) %></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+  <% @broker_configurations.each do |broker_configuration| %>
+      <tr>
+        <td class="link_no_dec"><%= link_to broker_configuration.name, broker_configuration %></td>
+        <% if can? :update, BrokerConfiguration %>
+            <td><%= link_to t(:edit), edit_broker_configuration_path(broker_configuration) %></td>
+        <% end %>
+        <% if can? :destroy, BrokerConfiguration %>
+            <td><%= link_to t(:destroy), broker_configuration, method: :delete, data: {confirm: 'Are you sure?'} %></td>
+        <% end %>
+      </tr>
+  <% end %>
+</table>
+
+<br/>
+
+<% if can? :create, BrokerConfiguration %>
+    <%= link_to t(:new_broker_config), new_broker_configuration_path %> |
+<% end %>
+<%= link_to t(:back), :back %>

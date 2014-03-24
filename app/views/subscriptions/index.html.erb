@@ -1,0 +1,35 @@
+<h1><%= t(:subscriptions) %></h1>
+
+<table>
+  <tr>
+    <th><%= t(:subscriber) %></th>
+    <th><%= t(:service) %></th>
+    <th><%= t(:costs) %></th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+  <% @subscriptions.each do |subscription| %>
+      <tr>
+        <td><%= subscription.subscriber.username %></td>
+        <td><%= subscription.service.name %></td>
+        <td><%= subscription.costs %></td>
+        <% if can? :read, subscription %>
+            <td><%= link_to t(:show), subscription %></td>
+        <% end %>
+        <% if can? :update, subscription %>
+            <td><%= link_to t(:edit), edit_subscription_path(subscription) %></td>
+        <% end %>
+        <% if can? :destroy, subscription %>
+            <td><%= link_to t(:destroy), subscription, method: :delete, data: {confirm: 'Are you sure?'} %></td>
+        <% end %>
+      </tr>
+  <% end %>
+</table>
+<br/>
+
+<% if can? :create, Subscription %>
+    <%= link_to t(:new_subscription), new_subscription_path %> |
+<% end %>
+<%= link_to t(:back), :back %>

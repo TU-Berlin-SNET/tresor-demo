@@ -1,0 +1,61 @@
+<script type="text/javascript">
+
+    <% if @geolocation_enabled %>
+    $(function () {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(successFunction, errorFunction);
+        } else {
+            alert("It seems like Geolocation, which is required for this page, is not enabled in your browser. Please use a browser which supports it.");
+        }
+    });
+    <% end %>
+
+    function successFunction(position) {
+        var lat = position.coords.latitude;
+        var long = position.coords.longitude;
+
+        document.getElementById("geoposition").innerHTML = "<p> Your position is: " + position.coords.latitude + ", " + position.coords.longitude + " (~ " + position.coords.accuracy + "m)</p>";
+        //$.post("sessions/saveposition", {geoposition : position});
+
+        document.forms[0].elements["lat"].value = position.coords.latitude;
+        document.forms[0].elements["long"].value = position.coords.longitude;
+        document.forms[0].elements["acc"].value = position.coords.accuracy;
+    }
+
+    function errorFunction(position) {
+        alert("Error!");
+    }
+</script>
+
+
+<h2><%= t :sign_in %></h2>
+
+<div id="geoposition"></div>
+
+<%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
+      <%= f.hidden_field :geolocation_lat, :id => :lat, :name => :lat %>
+      <%= f.hidden_field :geolocation_long, :id => :long, :name => :long %>
+      <%= f.hidden_field :geolocation_acc, :id => :acc, :name => :acc %>
+
+    <div class="field"><%= f.label :username %>
+      <br/>
+      <%= f.text_field :username, :autofocus => true %>
+    </div>
+
+    <div class="field"><%= f.label :password %>
+      <br/>
+      <%= f.password_field :password %>
+    </div>
+    <br/>
+
+    <% if devise_mapping.rememberable? %>
+        <div>
+          <%= f.check_box :remember_me %> <%= f.label :remember_me %>
+        </div>
+    <% end %>
+
+    <div><%= f.submit t(:sign_in) %></div>
+<% end %>
+<br/>
+
+<%# <%= render "devise/shared/links" %>

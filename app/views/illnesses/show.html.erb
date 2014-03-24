@@ -1,0 +1,26 @@
+<h2><%= @illness.name %></h2>
+
+<table class="standard_table">
+  <tr>
+    <td class="property_label">
+      <%= t :name %>:
+    </td>
+    <td class="property_value">
+      <%= @illness.name %>
+    </td>
+  </tr>
+
+  <tr>
+    <td class="property_label">
+      <%= t :description %>:
+    </td>
+    <td class="property_value">
+      <%= @illness.description %>
+    </td>
+  </tr>
+</table>
+
+<% if can? :update, Illness %>
+    <%= link_to t(:edit), edit_illness_path(@illness) %> |
+<% end %>
+<%= link_to t(:back), :back %>

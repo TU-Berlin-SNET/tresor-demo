@@ -1,0 +1,30 @@
+<%= form_for(@subscription) do |f| %>
+    <%= render 'shared/error_messages', :object => f.object %>
+
+
+    <% if current_user.roles?(:admin) %>
+        <div class="field">
+          <%= f.label t(:subscriber) %>
+          <br/>
+          <%= f.collection_select(:user_id, User.all, :id, :username, :prompt => true) %>
+        </div>
+    <% else %>
+        <%= f.hidden_field :user_id, :value => current_user.id %>
+    <% end %>
+
+    <div class="field">
+      <%= f.label t(:service) %>
+      <br/>
+      <%= f.collection_select(:service_id, Service.all, :id, :name, :prompt => true) %>
+    </div>
+
+    <div class="field">
+      <%= f.label t(:costs) %>
+      <br/>
+      <%= f.text_field :costs %>
+    </div>
+
+    <div class="actions">
+      <%= f.submit t(:save) %>
+    </div>
+<% end %>

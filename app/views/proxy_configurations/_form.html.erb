@@ -1,0 +1,55 @@
+<%= form_for(@proxy_configuration) do |f| %>
+    <%= render 'shared/error_messages', :object => f.object %>
+
+    <table>
+        <tr>
+          <th></th>
+          <th></th>
+        </tr>
+      <tbody>
+      <tr>
+        <td>
+          <%= f.label :name %>
+        </td>
+        <td>
+          <%= f.text_field :name %>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <%= f.label :ad_linkup %>
+        </td>
+        <td>
+          <%= f.check_box :ad_linkup %>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <%= f.label :ldap_linkup %>
+        </td>
+        <td>
+          <%= f.check_box :ldap_linkup %>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <%= f.label :location_services %>
+        </td>
+        <td>
+          <%= f.check_box :location_services %>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <%= f.label :logging %>
+        </td>
+        <td>
+          <%= f.check_box :logging %>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+    <div class="actions">
+      <%= f.submit t(:save) %>
+    </div>
+<% end %>

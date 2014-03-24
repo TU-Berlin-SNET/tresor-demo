@@ -1,0 +1,53 @@
+<h2><%= t(:proxy_config) %></h2>
+
+<table class="standard_table">
+  <tr>
+    <td class="property_label">
+      <%= t(:name) %>:
+    </td>
+    <td class="property_value">
+      <%= @proxy_configuration.name %>
+    </td>
+  </tr>
+
+  <tr>
+    <td class="property_label">
+      <%= t(:ad_linkup) %>:
+    </td>
+    <td class="property_value">
+      <%= @proxy_configuration.ad_linkup %>
+    </td>
+  </tr>
+
+  <tr>
+    <td class="property_label">
+      <%= t(:ldap_linkup) %>:
+    </td>
+    <td class="property_value">
+      <%= @proxy_configuration.ldap_linkup %>
+    </td>
+  </tr>
+
+  <tr>
+    <td class="property_label">
+      <%= t(:location_services) %>:
+    </td>
+    <td class="property_value">
+      <%= @proxy_configuration.location_services %>
+    </td>
+  </tr>
+
+  <tr>
+    <td class="property_label">
+      <%= t(:logging) %>:
+    </td>
+    <td class="property_value">
+      <%= @proxy_configuration.logging %>
+    </td>
+  </tr>
+</table>
+
+<% if can? :update, ProxyConfiguration %>
+    <%= link_to t(:edit), edit_proxy_configuration_path(@proxy_configuration) %> |
+<% end %>
+<%= link_to t(:back), :back %>

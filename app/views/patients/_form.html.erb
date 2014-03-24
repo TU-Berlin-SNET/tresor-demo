@@ -1,0 +1,156 @@
+<%= form_for(@patient) do |f| %>
+    <%= render 'shared/error_messages', :object => f.object %>
+
+    <fieldset>
+      <legend><%= t :patient_data %></legend>
+      <div class="field">
+        <%= f.label t :first_name %>
+        <br/>
+        <%= f.text_field :first_name %>
+      </div>
+      <div class="field">
+        <%= f.label t :last_name %>
+        <br/>
+        <%= f.text_field :last_name %>
+      </div>
+      <div class="field">
+        <%= f.label t :sex %>
+        <br/>
+        <%= f.text_field :sex %>
+      </div>
+      <div class="field">
+        <%= f.label t :age %>
+        <br/>
+        <%= f.number_field :age %>
+      </div>
+      <div class="field">
+        <%= f.label t :height %>
+        <br/>
+        <%= f.text_field :height %>
+      </div>
+      <div class="field">
+        <%= f.label t :body_surface_area %>
+        <br/>
+        <%= f.number_field :body_surface_area %>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend><%= t :medicaments %></legend>
+      <table>
+        <th></th>
+        <th><%= t :name %></th>
+        <th><%= t :description %></th>
+        <% Medicament.order(:name).each do |medicament| %>
+            <tr>
+              <td><%= check_box_tag "patient[medicament_ids][]", medicament.id, @patient.medicaments.include?(medicament) %></td>
+              <td><%= link_to medicament.name, medicament %></td>
+              <td><%= medicament.description %></td>
+            </tr>
+        <% end %>
+      </table>
+    </fieldset>
+
+    <fieldset>
+      <legend><%= t :illnesses %></legend>
+      <table>
+        <th></th>
+        <th><%= t :name %></th>
+        <th><%= t :description %></th>
+        <% Illness.order(:name).each do |illness| %>
+            <tr>
+              <td><%= check_box_tag "patient[illness_ids][]", illness.id, @patient.illnesses.include?(illness) %></td>
+              <td><%= link_to illness.name, illness %></td>
+              <td><%= illness.description %></td>
+            </tr>
+        <% end %>
+      </table>
+    </fieldset>
+
+    <fieldset>
+      <legend><%= t(:blood_pressure) %></legend>
+      <table>
+        <tr>
+          <th><%= t :date_bp %></th>
+          <th><%= t :systolic %></th>
+          <th><%= t :diastolic %></th>
+          <th></th>
+          <th></th>
+        </tr>
+        <% @patient.blood_pressures.each do |blood_pressure| %>
+            <tr>
+              <td><%= blood_pressure.date %></td>
+              <td><%= blood_pressure.systolic %></td>
+              <td><%= blood_pressure.diastolic %></td>
+              <% if can? :update, BloodPressure %>
+                  <td><%= link_to t(:edit), edit_blood_pressure_path(blood_pressure) %></td>
+              <% end %>
+              <% if can? :destroy, BloodPressure %>
+                  <td><%= link_to t(:destroy), blood_pressure, method: :delete, data: {confirm: 'Are you sure?'} %></td>
+              <% end %>
+            </tr>
+        <% end %>
+      </table>
+      <% if can? :create, BloodPressure %>
+          <%= link_to t(:new_blood_pressure), new_blood_pressure_path %>
+      <% end %>
+    </fieldset>
+
+    <fieldset>
+      <legend><%= t(:pulse) %></legend>
+      <table>
+        <tr>
+          <th><%= t :date_pulse %></th>
+          <th><%= t :frequency %></th>
+          <th></th>
+          <th></th>
+        </tr>
+        <% @patient.pulses.each do |pulse| %>
+            <tr>
+              <td><%= pulse.date %></td>
+              <td><%= pulse.frequency %></td>
+              <% if can? :update, Pulse %>
+                  <td><%= link_to t(:edit), edit_pulse_path(pulse) %></td>
+              <% end %>
+              <% if can? :destroy, Pulse %>
+                  <td><%= link_to t(:destroy), pulse, method: :delete, data: {confirm: 'Are you sure?'} %></td>
+              <% end %>
+            </tr>
+        <% end %>
+      </table>
+      <% if can? :create, Pulse %>
+          <%= link_to t(:new_pulse), new_pulse_path %>
+      <% end %>
+    </fieldset>
+
+    <fieldset>
+      <legend><%= t(:weight) %></legend>
+      <table>
+        <tr>
+          <th><%= t :date_weight %></th>
+          <th><%= t :value %></th>
+          <th></th>
+          <th></th>
+        </tr>
+        <% @patient.weights.each do |weight| %>
+            <tr>
+              <td><%= weight.date %></td>
+              <td><%= weight.value %></td>
+              <% if can? :update, Weight %>
+                  <td><%= link_to t(:edit), edit_weight_path(weight) %></td>
+              <% end %>
+              <% if can? :destroy, Weight %>
+                  <td><%= link_to t(:destroy), weight, method: :delete, data: {confirm: 'Are you sure?'} %></td>
+              <% end %>
+            </tr>
+        <% end %>
+      </table>
+      <% if can? :create, Weight %>
+          <%= link_to t(:new_weight), new_weight_path %>
+      <% end %>
+    </fieldset>
+
+    <div class="actions">
+      <%= f.submit t :save %>
+    </div>
+<% end %>

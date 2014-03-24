@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  patient_id: 1
+  systolic: 1
+  diastolic: 1
+  date: 2012-10-19 14:10:40
+
+two:
+  patient_id: 1
+  systolic: 1
+  diastolic: 1
+  date: 2012-10-19 14:10:40

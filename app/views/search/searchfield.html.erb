@@ -1,0 +1,10 @@
+<h1><%= t :find_pat_by_code %></h1>
+
+<%= form_tag :action => :search do %>
+    <p>
+      <%= text_field_tag "number" %>
+      <%= submit_tag t(:find) %>
+    </p>
+<% end %>
+
+<%= link_to t(:back), :back %>

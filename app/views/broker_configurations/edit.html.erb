@@ -1,0 +1,8 @@
+<h1><%= t(:edit_broker_config) %></h1>
+
+<%= render 'form' %>
+
+<% if can? :read, BrokerConfiguration %>
+    <%= link_to t(:show), @broker_configuration %> |
+<% end %>
+<%= link_to t(:back), :back %>

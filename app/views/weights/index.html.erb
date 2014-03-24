@@ -1,0 +1,34 @@
+<h1><%= t(:weights) %></h1>
+
+<table>
+  <tr>
+    <th><%= t(:patient) %></th>
+    <th><%= t(:value) %></th>
+    <th><%= t(:date_weight) %></th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+  <% @weights.each do |weight| %>
+      <tr>
+        <td><%= "#{weight.patient.first_name} #{weight.patient.last_name}" %></td>
+        <td><%= weight.value %></td>
+        <td><%= weight.date %></td>
+        <td><%= link_to t(:show), weight %></td>
+        <% if can? :update, Weight %>
+            <td><%= link_to t(:edit), edit_weight_path(weight) %></td>
+        <% end %>
+        <% if can? :destroy, Weight %>
+            <td><%= link_to t(:destroy), weight, method: :delete, data: {confirm: 'Are you sure?'} %></td>
+        <% end %>
+      </tr>
+  <% end %>
+</table>
+
+<br/>
+
+<% if can? :create, Weight %>
+    <%= link_to t(:new_weight), new_weight_path %>
+<% end %>
+<%= link_to t(:back), :back %>

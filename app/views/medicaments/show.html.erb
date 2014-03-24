@@ -1,0 +1,97 @@
+<h2><%= @medicament.name %></h2>
+
+<fieldset>
+  <legend><%= t :medicament_data %></legend>
+
+  <table class="standard_table">
+    <tr>
+      <td class="property_label">
+        <%= t :name %>:
+      </td>
+      <td class="property_value">
+        <%= @medicament.name %>
+      </td>
+    </tr>
+
+    <tr>
+      <td class="property_label">
+        <%= t :description %>:
+      </td>
+      <td class="property_value">
+        <%= @medicament.description %>
+      </td>
+    </tr>
+  </table>
+</fieldset>
+
+<fieldset>
+  <legend><%= t :confl_illness %></legend>
+  <% if @medicament.conflict_illnesses.count == 0 %>
+      <p><%= t :no_confl_known %></p>
+  <% else %>
+      <table>
+        <tr>
+          <th><%= t :name %></th>
+          <th><%= t :description %></th>
+          <th></th>
+          <th></th>
+          <th></th>
+        </tr>
+        <%= render @medicament.conflict_illnesses %>
+      </table>
+  <% end %>
+  <% if can? :create, ConflictIllness %>
+      <%= link_to t(:add_new_confl), new_conflict_illness_path(:m_id => @medicament.id) %>
+  <% end %>
+</fieldset>
+
+<fieldset>
+  <legend><%= t :confl_medicament %></legend>
+  <% if ((@medicament.conflict_meds.count == 0) && (@medicament.inverse_conflict_meds.count == 0)) %>
+      <p><%= t :no_confl_known %></p>
+  <% else %>
+      <table>
+        <tr>
+          <th><%= t :name %></th>
+          <th><%= t :description %></th>
+          <th></th>
+          <th></th>
+          <th></th>
+        </tr>
+        <% @medicament.conflict_meds.each do |cm| %>
+            <tr>
+              <td><%= cm.med.name %></td>
+              <td><%= cm.description %></td>
+              <td><%= link_to t(:show), cm %></td>
+              <% if can? :update, ConflictMed %>
+                  <td><%= link_to t(:edit), edit_conflict_med_path(cm) %></td>
+              <% end %>
+              <% if can? :destroy, ConflictMed %>
+                  <td><%= link_to t(:destroy), cm, method: :delete, data: {confirm: t(:conf_delete)} %></td>
+              <% end %>
+            </tr>
+        <% end %>
+        <% @medicament.inverse_conflict_meds.each do |icm| %>
+            <tr>
+              <td><%= icm.medicament.name %></td>
+              <td><%= icm.description %></td>
+              <td><%= link_to t(:show), icm %></td>
+              <% if can? :update, ConflictMed %>
+                  <td><%= link_to t(:edit), edit_conflict_med_path(icm) %></td>
+              <% end %>
+              <% if can? :destroy, ConflictMed %>
+                  <td><%= link_to t(:destroy), icm, method: :delete, data: {confirm: t(:conf_delete)} %></td>
+              <% end %>
+            </tr>
+        <% end %>
+      </table>
+  <% end %>
+  <% if can? :create, ConflictMed %>
+      <%= link_to t(:add_new_confl), new_conflict_med_path(:m_id => @medicament.id) %>
+  <% end %>
+</fieldset>
+
+<% if can? :update, Medicament %>
+    <%= link_to t(:edit), edit_medicament_path(@medicament) %> |
+<% end %>
+<%= link_to t(:back), :back %>

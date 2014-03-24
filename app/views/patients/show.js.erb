@@ -1,0 +1,5 @@
+setTimeout(function() {
+    $("#loading_animation").hide();
+    $("#conflict_result").html('<div class="flash notice"><%= escape_javascript(render("conflict_overview")) %></div>')
+    $("#conflict_result").show("fade", 200);
+}, 5000);

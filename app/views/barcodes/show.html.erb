@@ -1,0 +1,26 @@
+<h2><%= t(:barcode_header, :patient => "#{@barcode.patient.first_name} #{@barcode.patient.last_name}") %></h2>
+
+<table class="standard_table">
+  <tr>
+    <td class="property_label">
+      <%= t(:number) %>:
+    </td>
+    <td class="property_value">
+      <%= @barcode.number %>
+    </td>
+  </tr>
+
+  <tr>
+    <td class="property_label">
+      <%= t :expiration %>:
+    </td>
+    <td class="property_value">
+      <%= l(@barcode.expiration, :format => :best) %>
+    </td>
+  </tr>
+</table>
+
+<% if can? :update, Barcode %>
+    <%= link_to t(:edit), edit_barcode_path(@barcode) %> |
+<% end %>
+<%= link_to t(:back), :back %>

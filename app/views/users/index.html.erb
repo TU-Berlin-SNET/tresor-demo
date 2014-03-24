@@ -1,0 +1,26 @@
+<h1><%= t(:users) %></h1>
+
+<table>
+  <tr>
+    <th><%= t(:username) %></th>
+    <th><%= t(:roles) %></th>
+    <th><%= t(:email) %></th>
+    <th><%= t(:created_at) %></th>
+    <th><%= t(:subscribed_services) %></th>
+    <th></th>
+  </tr>
+
+  <% @users.each do |user| %>
+      <tr>
+        <td class="link_no_dec"><%= link_to user.username, user %></td>
+        <td><%= user.getRolesAsString %></td>
+        <td><%= user.email %></td>
+        <td><%= l(user.created_at, :format => :best) %></td>
+        <td><%= user.subscriptions.size %></td>
+        <td><%= link_to(t(:destroy), user, method: :delete, data: {confirm: 'Are you sure?'}) unless current_user == user %></td>
+      </tr>
+  <% end %>
+</table>
+
+<br/>
+<%= link_to t(:back), :back %>

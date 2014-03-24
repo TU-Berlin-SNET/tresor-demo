@@ -1,0 +1,63 @@
+<h2><%= t(:service) %>: <%= @service.name %></h2>
+
+<table class="standard_table">
+  <tr>
+    <td class="property_label">
+      <%= t(:description_gen) %>:
+    </td>
+    <td class="property_value">
+      <%= @service.description_general %>
+    </td>
+  </tr>
+
+  <tr>
+    <td class="property_label">
+      <%= t(:description_tech) %>:
+    </td>
+    <td class="property_value">
+      <%= @service.description_technical %>
+    </td>
+  </tr>
+
+  <tr>
+    <td class="property_label">
+      <%= t(:costs) %>:
+    </td>
+    <td class="property_value">
+      <%= @service.costs %>
+    </td>
+  </tr>
+
+  <tr>
+    <td class="property_label">
+      <%= t(:server_location) %>:
+    </td>
+    <td class="property_value">
+      <%= @service.server_location %>
+    </td>
+  </tr>
+
+  <tr>
+    <td class="property_label">
+      <%= t(:owner) %>:
+    </td>
+    <td class="property_value">
+      <%= @service.owner.username %>
+    </td>
+  </tr>
+</table>
+
+<% if current_user && current_user.subscribed_services.include?(@service) %>
+    <p><%= t(:already_subscribed) %></p>
+<% else %>
+    <% if can? :create, Subscription %>
+        <p>
+          <%= link_to t(:subscribe), {:controller => :subscriptions, :action => :create, :new_service_id => @service.id}, :method => :post %>
+        </p>
+    <% end %>
+<% end %>
+
+<% if can? :update, Service %>
+    <%= link_to t(:edit), edit_service_path(@service) %> |
+<% end %>
+<%= link_to t(:back), :back %>

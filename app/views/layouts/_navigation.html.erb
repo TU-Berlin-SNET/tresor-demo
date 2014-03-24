@@ -1,0 +1,57 @@
+<nav>
+  <ul>
+    <li><%= link_to "Home", root_path %></li>
+    <% if can? :show, Patient %>
+        <li><a href="#"><%= t(:patients) %></a>
+          <ul>
+            <li><%= link_to t(:patients), :patients %></li>
+            <li><%= link_to t(:find_pat_by_code), searchfield_path %></li>
+          </ul>
+        </li>
+    <% end %>
+    <% if can? :update, Medicament %>
+        <li><a href="#"><%= t(:pdms) %></a>
+          <ul>
+            <li><%= link_to t(:illnesses), :illnesses %></li>
+            <li><%= link_to t(:medicaments), :medicaments %></li>
+            <li><%= link_to t(:confl_illnesses), :conflict_illnesses %></li>
+            <li><%= link_to t(:confl_medicaments), :conflict_meds %></li>
+          </ul>
+        </li>
+    <% end %>
+    <li><a href="#"><%= t(:marketplace) %></a>
+      <ul>
+        <li><%= link_to t(:service_overview), :services %></li>
+        <% if can? :create, Service %>
+            <li><%= link_to t(:service_provide), {:controller => :services, :action => :new, :owner_id => current_user.id} %></li>
+        <% end %>
+      </ul>
+    </li>
+    <li><a href="#"><%= t(:links) %></a>
+      <ul>
+        <li><%= link_to t(:tresor_project), "http://www.cloud-tresor.de", :target => "_blank" %></li>
+        <li><%= link_to t(:partners), "http://www.cloud-tresor.de/partner/", :target => "_blank" %></li>
+      </ul>
+    </li>
+    <% if user_signed_in? && (current_user.roles?(:admin) || current_user.roles?(:techadmin)) %>
+        <li><a href="#"><%= t(:tresor_configuration) %></a>
+          <ul>
+            <li><%= link_to t(:proxy_config), ProxyConfiguration.first %></li>
+            <li><%= link_to t(:broker_config), BrokerConfiguration.first %></li>
+          </ul>
+        </li>
+  <% end %>
+    <% if user_signed_in? && (current_user.roles?(:admin)) %>
+        <li><a href="#"><%= t(:admin) %></a>
+        <ul>
+          <li><%= link_to t(:services), :services %></li>
+          <li><%= link_to t(:barcodes), :barcodes %></li>
+          <li><%= link_to t(:subscriptions), :subscriptions %></li>
+          <li><%= link_to t(:users), :users %></li>
+          <li><%= link_to t(:site_config), SiteConfiguration.first %></li>
+        </ul>
+        </li>
+  <% end %>
+  </ul>
+</nav>
+<div id="bottombar"></div>

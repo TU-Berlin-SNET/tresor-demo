@@ -1,0 +1,44 @@
+<h2><%= t(:blood_pressure) %></h2>
+
+<table class="standard_table">
+  <tr>
+    <td class="property_label">
+      <%= t(:patient) %>:
+    </td>
+    <td class="property_value">
+      <%= @blood_pressure.patient.get_full_name %>
+    </td>
+  </tr>
+
+  <tr>
+    <td class="property_label">
+      <%= t(:systolic) %>:
+    </td>
+    <td class="property_value">
+      <%= @blood_pressure.systolic %>
+    </td>
+  </tr>
+
+  <tr>
+    <td class="property_label">
+      <%= t(:diastolic) %>:
+    </td>
+    <td class="property_value">
+      <%= @blood_pressure.diastolic %>
+    </td>
+  </tr>
+
+  <tr>
+    <td class="property_label">
+      <%= t(:date_bp) %>:
+    </td>
+    <td class="property_value">
+      <%= l(@blood_pressure.date, :format => :best) %>
+    </td>
+  </tr>
+</table>
+
+<% if can? :update, BloodPressure %>
+    <%= link_to t(:edit), edit_blood_pressure_path(@blood_pressure) %> |
+<% end %>
+<%= link_to t(:back), :back %>

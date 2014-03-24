@@ -1,0 +1,21 @@
+<%= form_for(@conflict_med) do |f| %>
+    <%= render 'shared/error_messages', :object => f.object %>
+
+    <div class="field">
+      <%= f.label t :medicament %><br />
+      <%= f.collection_select(:medicament_id, Medicament.all, :id, :name, {:prompt => true})%>
+    </div>
+
+    <div class="field">
+      <%= f.label t :confl_with %><br />
+      <%= f.collection_select(:med_id, Medicament.where("id is not ?", @paramid), :id, :name, {:prompt => true})%>
+    </div>
+
+    <div class="field">
+      <%= f.label t(:description) %><br />
+      <%= f.text_field :description %>
+    </div>
+    <div class="actions">
+      <%= f.submit t :save %>
+    </div>
+<% end %>

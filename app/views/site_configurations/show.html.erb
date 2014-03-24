@@ -1,0 +1,26 @@
+<h2><%= t(:site_config) %></h2>
+
+<table class="standard_table">
+  <tr>
+    <td class="property_label">
+      <%= t(:name) %>:
+    </td>
+    <td class="property_value">
+      <%= @site_configuration.name %>
+    </td>
+  </tr>
+
+  <tr>
+    <td class="property_label">
+      <%= t(:geolocation_login) %>:
+    </td>
+    <td class="property_value">
+      <%= @site_configuration.geolocation_login %>
+    </td>
+  </tr>
+</table>
+
+<% if can? :update, SiteConfiguration %>
+    <%= link_to t(:edit), edit_site_configuration_path(@site_configuration) %> |
+<% end %>
+<%= link_to t(:back), :back %>

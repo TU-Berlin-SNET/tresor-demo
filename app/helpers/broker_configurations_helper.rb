@@ -1,0 +1,2 @@
+module BrokerConfigurationsHelper
+end

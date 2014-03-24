@@ -1,0 +1,62 @@
+<h2><%= t(:account_of) %>: <%= @user.username %></h2>
+
+<fieldset>
+  <legend><%= t(:account_information) %></legend>
+  <table class="standard_table">
+    <tr>
+      <td class="property_label">
+        <%= t(:username) %>:
+      </td>
+      <td class="property_value">
+        <%= @user.username %>
+      </td>
+    </tr>
+
+    <tr>
+      <td class="property_label">
+        <%= t(:email) %>:
+      </td>
+      <td class="property_value">
+        <%= @user.email %>
+      </td>
+    </tr>
+
+    <tr>
+      <td class="property_label">
+        <%= t(:roles) %>:
+      </td>
+      <td class="property_value">
+        <%= @user.getRolesAsString %>
+      </td>
+    </tr>
+  </table>
+</fieldset>
+
+<fieldset>
+  <legend><%= t(:subscribed_services) %></legend>
+  <% if @user.subscriptions.size == 0 %>
+      <p><%= t(:no_subscribed_services) %></p>
+  <% else %>
+      <table>
+        <tr>
+          <th><%= t(:name) %></th>
+          <th><%= t(:description) %></th>
+          <th><%= t(:costs) %></th>
+          <th><%= t(:bought_at) %></th>
+          <th></th>
+        </tr>
+        <% @user.subscriptions.each do |subscription| %>
+            <tr>
+              <td class="link_no_dec"><%= link_to subscription.service.name, subscription %></td>
+              <td><%= subscription.service.description_general %></td>
+              <td><%= subscription.costs %></td>
+              <td><%= l(subscription.created_at, :format => :best) %></td>
+              <td><%= link_to t(:end_subscription), subscription, method: :delete, data: {confirm: 'Are you sure?'} %></td>
+            </tr>
+        <% end %>
+      </table>
+  <% end %>
+  <%= link_to t(:show_available_services), services_path %>
+</fieldset>
+
+<%= link_to t(:home), root_path %> | <%= link_to t(:back), :back %>

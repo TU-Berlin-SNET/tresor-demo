@@ -1,0 +1,32 @@
+<h1><%= t :barcodes %></h1>
+
+<table>
+  <tr>
+    <th><%= t :number %></th>
+    <th><%= t :expiration %></th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+  <% @barcodes.each do |barcode| %>
+      <tr>
+        <td class="link_no_dec"><%= link_to barcode.number, barcode %></td>
+        <td><%= barcode.expiration %></td>
+        <td><%= link_to 'Show', barcode %></td>
+        <% if can? :update, Barcode %>
+            <td><%= link_to 'Edit', edit_barcode_path(barcode) %></td>
+        <% end %>
+        <% if can? :destroy, Barcode %>
+            <td><%= link_to 'Destroy', barcode, method: :delete, data: {confirm: 'Are you sure?'} %></td>
+        <% end %>
+      </tr>
+  <% end %>
+</table>
+
+<br/>
+
+<% if can? :create, Barcode %>
+    <%= link_to t(:new_barcode), new_barcode_path %> |
+<% end %>
+<%= link_to t(:back), :back %>

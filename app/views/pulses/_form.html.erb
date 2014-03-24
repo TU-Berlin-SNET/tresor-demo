@@ -1,0 +1,27 @@
+<%= form_for(@pulse) do |f| %>
+    <%= render 'shared/error_messages', :object => f.object %>
+
+    <% if user_signed_in? && current_user.roles?(:admin) %>
+        <div class="field">
+          <%= f.label :patient_id %>
+          <br/>
+          <%= f.collection_select(:patient_id, Patient.all, :id, :get_full_name, {:prompt => :true}) %>
+        </div>
+    <% else %>
+        <%= f.hidden_field :patient_id %>
+    <% end %>
+
+    <div class="field">
+      <%= f.label t(:frequency) %>
+      <br/>
+      <%= f.number_field :frequency %>
+    </div>
+    <div class="field">
+      <%= f.label :date %>
+      <br/>
+      <%= f.text_field :date %>
+    </div>
+    <div class="actions">
+      <%= f.submit t(:save) %>
+    </div>
+<% end %>

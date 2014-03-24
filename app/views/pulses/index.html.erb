@@ -1,0 +1,33 @@
+<h1><%= t(:pulses) %></h1>
+
+<table>
+  <tr>
+    <th><%= t(:patient) %></th>
+    <th><%= t(:frequency) %></th>
+    <th><%= t(:date_pulse) %></th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+  <% @pulses.each do |pulse| %>
+      <tr>
+        <td><%= "#{pulse.patient.first_name} #{pulse.patient.last_name}" %></td>
+        <td><%= pulse.frequency %></td>
+        <td><%= pulse.date %></td>
+        <td><%= link_to t(:show), pulse %></td>
+        <% if can? :update, Pulse %>
+            <td><%= link_to t(:edit), edit_pulse_path(pulse) %></td>
+        <% end %>
+        <% if can? :destroy, Pulse %>
+            <td><%= link_to t(:destroy), pulse, method: :delete, data: {confirm: 'Are you sure?'} %></td>
+        <% end %>
+      </tr>
+  <% end %>
+</table>
+
+<br/>
+<% if can? :create, Pulse %>
+    <%= link_to t(:new_pulse), new_pulse_path %>
+<% end %>
+<%= link_to t(:back), :back %>

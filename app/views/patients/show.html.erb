@@ -1,0 +1,285 @@
+<script type="text/javascript">
+
+    $(function () {
+        new Highcharts.Chart({
+            chart:{
+                renderTo:"blood_pressure_chart"
+            },
+            title:{
+                text:"Blood pressure overview"
+            },
+            xAxis:{
+                type:"datetime"
+            },
+            yAxis:{
+                title:{
+                    text:"Value"
+                }
+            },
+            tooltip:{
+                formatter:function () {
+                    var s = '<span style="color: ' + this.series.color + '; font-weight: bold;">' + this.y;
+                    return s + "<br/>" + Highcharts.dateFormat("%e %B %Y - %H:%M", this.x);
+                }
+            },
+            series:[
+                {
+                    name:"Systolic",
+                    pointInterval: <%= 1.day * 1000 %>,
+                    pointStart: <%= 1.day * 1000 %>,
+                    data: <%= @patient.date_blood_pressure_array(true) %>
+                },
+                {
+                    name:"Diastolic",
+                    pointInterval: <%= 1.day * 1000 %>,
+                    pointStart: <%= 1.day * 1000 %>,
+                    data: <%= @patient.date_blood_pressure_array(false) %>
+                }
+            ]
+        });
+    });
+
+    $(function () {
+        new Highcharts.Chart({
+            chart:{
+                renderTo:"pulse_chart"
+            },
+            title:{
+                text:"Pulse overview"
+            },
+            xAxis:{
+                type:"datetime"
+            },
+            yAxis:{
+                title:{
+                    text:"Frequency"
+                }
+            },
+            tooltip:{
+                formatter:function () {
+                    var s = '<span style="color: ' + this.series.color + '; font-weight: bold;">' + this.y;
+                    return s + "<br/>" + Highcharts.dateFormat("%e %B %Y - %H:%M:%S", this.x);
+                }
+            },
+            series:[
+                {
+                    name:"Heart frequency",
+                    pointInterval: <%= 1.day * 1000 %>,
+                    pointStart: <%= 1.day * 1000 %>,
+                    data: <%= @patient.date_pulse_array() %>
+                }
+            ]
+        });
+    });
+
+    $(function () {
+        new Highcharts.Chart({
+            chart:{
+                renderTo:"weight_chart"
+            },
+            title:{
+                text:"Weight overview"
+            },
+            xAxis:{
+                type:"datetime"
+            },
+            yAxis:{
+                title:{
+                    text:"Weight in kg"
+                }
+            },
+            tooltip:{
+                formatter:function () {
+                    var s = '<span style="color: ' + this.series.color + '; font-weight: bold;">' + this.y;
+                    return s + "<br/>" + Highcharts.dateFormat("%e %B %Y - %H:%M", this.x);
+                }
+            },
+            series:[
+                {
+                    name:"Weight",
+                    pointInterval: <%= 1.day * 1000 %>,
+                    pointStart: <%= 1.day * 1000 %>,
+                    data: <%= @patient.date_weight_array() %>
+                }
+            ]
+        });
+    });
+</script>
+
+<% if current_user && (current_user.roles?(:admin) || current_user.has_access_to_pai) %>
+    <div id="conflict_wrapper">
+      <div id="loading_animation">
+        <img src="http://i.stack.imgur.com/FhHRx.gif"/>
+
+        <p><%= t(:contact_server) %></p>
+      </div>
+
+      <div id="conflict_result"></div>
+
+      <%= button_to t(:check_conflicts),
+                    {:action => :show},
+                    :method => :get, :remote => :true, :id => "conflict_button"
+      %>
+    </div>
+<% end %>
+
+<h2><%= t(:patient) %>: <%= @patient.get_full_name %></h2>
+
+<fieldset>
+  <legend><%= t :patient_data %></legend>
+
+  <table class="standard_table">
+    <tr>
+      <td class="property_label">
+        <%= t :first_name %>:
+      </td>
+      <td class="property_value">
+        <%= @patient.first_name %>
+      </td>
+    </tr>
+
+    <tr>
+      <td class="property_label">
+        <%= t :last_name %>:
+      </td>
+      <td class="property_value">
+        <%= @patient.last_name %>
+      </td>
+    </tr>
+
+    <tr>
+      <td class="property_label">
+        <%= t :sex %>:
+      </td>
+      <td class="property_value">
+        <%= @patient.sex %>
+      </td>
+    </tr>
+
+    <tr>
+      <td class="property_label">
+        <%= t :age %>:
+      </td>
+      <td class="property_value">
+        <%= @patient.age %>
+      </td>
+    </tr>
+
+    <tr>
+      <td class="property_label">
+        <%= t :height %>:
+      </td>
+      <td class="property_value">
+        <%= @patient.height %>
+      </td>
+    </tr>
+
+    <tr>
+      <td class="property_label">
+        <%= t :body_surface_area %>:
+      </td>
+      <td class="property_value">
+        <%= @patient.body_surface_area %>
+      </td>
+    </tr>
+  </table>
+
+  <% if can? :create, Barcode %>
+      <p>
+        <%= link_to t(:generate_barcode), {:controller => :barcodes, :action => :create, :patient_id => @patient.id}, :method => :post %>
+      </p>
+  <% end %>
+</fieldset>
+
+<fieldset>
+  <legend><%= t :medicaments %></legend>
+  <% if @patient.medicaments.count == 0 %>
+      <p><%= t :pat_no_meds %></p>
+  <% else %>
+      <% @patient.medicaments.each do |medicament| %>
+          <%= link_to medicament.name, medicament %> <br/>
+      <% end %>
+  <% end %>
+</fieldset>
+
+<fieldset>
+  <legend><%= t :illnesses %></legend>
+  <% if @patient.illnesses.count == 0 %>
+      <p><%= t :pat_no_illnesses %></p>
+  <% else %>
+      <% @patient.illnesses.each do |illness| %>
+          <%= link_to illness.name, illness %> <br/>
+      <% end %>
+  <% end %>
+</fieldset>
+
+<% if current_user && (current_user.roles?(:admin) || current_user.has_access_to_verlaufsdoku) %>
+    <div id="tabs">
+      <ul>
+        <li><a href="#tabs-1"><%= t(:blood_pressure) %></a></li>
+        <li><a href="#tabs-2"><%= t(:pulse) %></a></li>
+        <li><a href="#tabs-3"><%= t(:weight) %></a></li>
+      </ul>
+      <div id="tabs-1">
+        <div id="blood_pressure_chart"></div>
+        <table>
+          <tr>
+            <th><%= t :date_bp %></th>
+            <th><%= t :systolic %></th>
+            <th><%= t :diastolic %></th>
+          </tr>
+          <% @patient.blood_pressures.each do |blood_pressure| %>
+              <tr>
+                <td><%= blood_pressure.date %></td>
+                <td><%= blood_pressure.systolic %></td>
+                <td><%= blood_pressure.diastolic %></td>
+              </tr>
+          <% end %>
+        </table>
+        <% if can? :create, BloodPressure %>
+            <%= link_to t(:new_blood_pressure), {:controller => :blood_pressures, :action => :new, :patient_id => @patient.id} %>
+        <% end %>
+      </div>
+      <div id="tabs-2">
+        <div id="pulse_chart"></div>
+        <table>
+          <tr>
+            <th><%= t :date_pulse %></th>
+            <th><%= t :frequency %></th>
+          </tr>
+          <% @patient.pulses.each do |pulse| %>
+              <tr>
+                <td><%= pulse.date %></td>
+                <td><%= pulse.frequency %></td>
+              </tr>
+          <% end %>
+        </table>
+        <% if can? :create, Pulse %>
+            <%= link_to t(:new_pulse), {:controller => :pulses, :action => :new, :patient_id => @patient.id} %>
+        <% end %>
+      </div>
+      <div id="tabs-3">
+        <div id="weight_chart"></div>
+        <table>
+          <tr>
+            <th><%= t :date_weight %></th>
+            <th><%= t :value %></th>
+          </tr>
+          <% @patient.weights.each do |weight| %>
+              <tr>
+                <td><%= weight.date %></td>
+                <td><%= weight.value %></td>
+              </tr>
+          <% end %>
+        </table>
+        <% if can? :create, Weight %>
+            <%= link_to t(:new_weight), {:controller => :weights, :action => :new, :patient_id => @patient.id} %>
+        <% end %>
+      </div>
+    </div>
+<% end %>
+
+<% if can? :update, Patient %>
+    <%= link_to t(:edit), edit_patient_path(@patient) %> |
+<% end %>
+<%= link_to t(:back), :back %>

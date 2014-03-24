@@ -1,0 +1,35 @@
+<h2><%= t(:conflict) %>: <%= t(:med_with_illness, :med => @conflict_illness.medicament.name, :ill => @conflict_illness.illness.name)%> </h2>
+
+<table class="standard_table">
+  <tr>
+    <td class="property_label">
+      <%= t :medicament %>:
+    </td>
+    <td class="property_value">
+      <%= @conflict_illness.medicament.name %>
+    </td>
+  </tr>
+
+  <tr>
+    <td class="property_label">
+      <%= t :illness %>:
+    </td>
+    <td class="property_value">
+      <%= @conflict_illness.illness.name %>
+    </td>
+  </tr>
+
+  <tr>
+    <td class="property_label">
+      <%= t :description %>:
+    </td>
+    <td class="property_value">
+      <%= @conflict_illness.description %>
+    </td>
+  </tr>
+</table>
+
+<% if can? :update, ConflictIllness %>
+    <%= link_to t(:edit), edit_conflict_illness_path(@conflict_illness) %> |
+<% end %>
+<%= link_to t(:back), :back %>

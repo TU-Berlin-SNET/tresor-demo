@@ -1,0 +1,2 @@
+module ConflictIllnessesHelper
+end

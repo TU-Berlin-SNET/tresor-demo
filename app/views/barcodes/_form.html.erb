@@ -1,0 +1,15 @@
+<%= form_for(@barcode) do |f| %>
+    <%= render 'shared/error_messages', :object => f.object %>
+
+  <div class="field">
+    <%= f.label t :number %><br />
+    <%= f.number_field :number %>
+  </div>
+  <div class="field">
+    <%= f.label t :expiration %><br />
+    <%= f.datetime_select :expiration %>
+  </div>
+  <div class="actions">
+    <%= f.submit t :save %>
+  </div>
+<% end %>

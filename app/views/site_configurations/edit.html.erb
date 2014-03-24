@@ -1,0 +1,8 @@
+<h1><%= t(:edit_site_config) %></h1>
+
+<%= render 'form' %>
+
+<% if can? :read, SiteConfiguration %>
+    <%= link_to t(:show), @site_configuration %> |
+<% end %>
+<%= link_to t(:back), :back %>

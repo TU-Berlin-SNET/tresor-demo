@@ -1,31 +1,31 @@
 class SessionsController < Devise::SessionsController
 
   def new
-    @geolocation_enabled = SiteConfiguration.first.geolocation_login
+    # @geolocation_enabled = SiteConfiguration.first.geolocation_login
     super
   end
 
   def create
-    geo_lat = params["lat"].to_f
-    geo_long = params["long"].to_f
-    geo_acc = params["acc"].to_f
-    geolocation_enabled = SiteConfiguration.first.geolocation_login
+    #geo_lat = params["lat"].to_f
+    #geo_long = params["long"].to_f
+    #geo_acc = params["acc"].to_f
+    #geolocation_enabled = SiteConfiguration.first.geolocation_login
 
-    if geolocation_enabled
-      inside = test_geolocation(geo_lat, geo_long, geo_acc)
-    else
+    #if geolocation_enabled
+    #  inside = test_geolocation(geo_lat, geo_long, geo_acc)
+    #else
       inside = true
-    end
+    #end
 
-    if inside == false
-      set_flash_message(:error, :invalid_location)
-      redirect_to :action => "new"
-    else
+    #if inside == false
+    #  set_flash_message(:error, :invalid_location)
+    #  redirect_to :action => "new"
+    #else
       self.resource = warden.authenticate!(auth_options)
       set_flash_message(:notice, :signed_in) if is_navigational_format?
       sign_in(resource_name, resource)
       respond_with resource, :location => after_sign_in_path_for(resource)
-    end
+    #end
   end
 
   def destroy

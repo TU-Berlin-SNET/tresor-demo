@@ -2,7 +2,7 @@ class Medicament < ActiveRecord::Base
   attr_accessible :description, :name
 
   has_many :conflict_illnesses, :dependent => :destroy
-  has_many :illnesses, :through => :conflict_illnesses, :uniq => true
+  has_many :illnesses, -> { uniq }, :through => :conflict_illnesses
 
   has_many :conflict_meds, :dependent => :destroy
   has_many :meds, :through => :conflict_meds

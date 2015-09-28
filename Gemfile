@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
-gem 'rails', '~> 3.2.16'
-gem 'rack', '~> 1.4.5'
+gem 'rails', '~> 4.2.0'
+gem 'rack', '~> 1.6.0'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -21,19 +21,15 @@ gem 'thin'
 gem 'nokogiri'
 gem 'rest-client'
 
-# Gems used only for assets and not required
-# in production environments by default.
-group :assets do
-  gem 'sass-rails'
-  gem 'coffee-rails'
+gem 'sass-rails'
+gem 'coffee-rails'
 
-  # See https://github.com/sstephenson/execjs#readme for more supported runtimes
-  gem 'therubyracer', :platforms => :ruby
+# See https://github.com/sstephenson/execjs#readme for more supported runtimes
+gem 'therubyracer', :platforms => :ruby
 
-  gem 'uglifier', '>= 1.0.3'
-  gem 'jquery-rails'
-  gem 'jquery-ui-rails', '~> 4.2.0'
-end
+gem 'uglifier', '>= 1.0.3'
+gem 'jquery-rails'
+gem 'jquery-ui-rails', '~> 4.2.0'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
@@ -51,3 +47,4 @@ end
 # gem 'debugger'
 
 gem 'rack-tctp'
+gem 'protected_attributes'

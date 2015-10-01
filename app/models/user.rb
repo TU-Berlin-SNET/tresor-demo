@@ -3,7 +3,8 @@ class User < ActiveRecord::Base
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable,  :validatable
+         :recoverable, :rememberable, :trackable,  :validatable,
+         :omniauthable, :omniauth_providers => [:cyclone_federation]
 
   attr_accessible :email, :password, :password_confirmation, :remember_me, :username
   # attr_accessible :title, :body
@@ -16,6 +17,12 @@ class User < ActiveRecord::Base
   has_many :subscriptions
   has_many :subscribed_services, :through => :subscriptions, :source => :service
 
+  def self.from_omniauth(auth)
+    where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
+      user.email = auth.extra.extra_id_token_attributes.email
+      user.password = Devise.friendly_token[0,20]
+    end
+  end
 
   def roles?(role)
     return !!self.roles.find_by_name(role)

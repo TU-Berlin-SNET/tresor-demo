@@ -13,6 +13,7 @@ end
 gem 'sqlite3'
 gem 'i18n'
 gem 'devise'
+gem 'omniauth-openid-connect', :path => 'vendor/gems/omniauth-openid-connect'
 gem 'cancan'
 gem 'thin'
 
@@ -47,4 +48,6 @@ gem 'jquery-ui-rails', '~> 4.2.0'
 # gem 'debugger'
 
 gem 'rack-tctp'
+
 gem 'protected_attributes'
+gem 'activerecord-session_store'

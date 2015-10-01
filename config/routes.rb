@@ -21,7 +21,8 @@ Rails.application.routes.draw do
 
   resources :blood_pressures
 
-  devise_for :users, :controllers => {:sessions => "sessions"}
+  devise_for :users, :controllers => {:sessions => "sessions", :omniauth_callbacks => "users/omniauth_callbacks"}
+
   resources :users
 
   resources :barcodes

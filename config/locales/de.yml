@@ -175,7 +175,8 @@ de:
 
 # login
   sign_up:                  "Registrieren"
-  sign_in:                  "Einloggen"
+  sign_in_with_password:    "Passwort login"
+  cyclone_sign_in:          "CYCLONE login"
   sign_out:                 "Ausloggen"
   sign_in_display_complete: "Eingeloggt als %{name}"
   sign_in_display_partial:  "Eingeloggt als"

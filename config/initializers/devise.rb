@@ -205,7 +205,59 @@ Devise.setup do |config|
   # ==> OmniAuth
   # Add a new OmniAuth provider. Check the wiki for more information on setting
   # up on your models and hooks.
-  # config.omniauth :github, 'APP_ID', 'APP_SECRET', :scope => 'user,public_repo'
+  config.omniauth :openid_connect, {
+    name: :cyclone_federation,
+    scope: [:openid, :email, :profile, :address],
+    response_type: :code,
+    issuer: "https://federation.cyclone-project.eu/auth/realms/master",
+    client_signing_alg: :RS256,
+    client_x509_signing_key: %{
+-----BEGIN CERTIFICATE-----
+MIIF4jCCBMqgAwIBAgIHGc8MRIp62zANBgkqhkiG9w0BAQsFADBnMQswCQYDVQQG
+EwJERTEnMCUGA1UEChMeVGVjaG5pc2NoZSBVbml2ZXJzaXRhZXQgQmVybGluMQ8w
+DQYDVQQDEwZUVUItQ0ExHjAcBgkqhkiG9w0BCQEWD2NhQFRVLUJlcmxpbi5ERTAe
+Fw0xNTA3MjIxMjM4MTNaFw0xODEwMTgxMjM4MTNaMIGlMQswCQYDVQQGEwJERTEP
+MA0GA1UECAwGQmVybGluMQ8wDQYDVQQHDAZCZXJsaW4xJzAlBgNVBAoMHlRlY2hu
+aXNjaGUgVW5pdmVyc2l0YWV0IEJlcmxpbjEjMCEGA1UECwwaU2VydmljZS1jZW50
+cmljIE5ldHdvcmtpbmcxJjAkBgNVBAMMHWZlZGVyYXRpb24uY3ljbG9uZS1wcm9q
+ZWN0LmV1MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAoGJTW+QZ156G
+51hhDG3nOpAdq+U9cb5kl0nEgFnvzSIu7tVZIr4dLBQjTFXfHl5tQ6JwbqxAvYFf
+Lco+1llQe25I5ax/ULQv+Y0uZC2992pnsSezRB2sVc4UNb/XnQMCRP6nKAeLLmwg
+ophcUmI5ItxkwftpW2iW8bAp3Rq3vpXHFVKgxvKXt8IQ37j0SwKVuSaDRbIdIPtC
+XjpRb9wXdKYgS+hCmF0IKblH5mowOr6qVy4ss+m/n3z23MoE3teTJrWK/urSRBuk
+7zzh5x4mVO5jH3/p8enh7ePX/sMgf68VDnIFrXPFdgDQxbv9eOGyMTyWX6Mt6AWE
+mVXA2SR1jQIDAQABo4ICUjCCAk4wTwYDVR0gBEgwRjARBg8rBgEEAYGtIYIsAQEE
+AwMwEQYPKwYBBAGBrSGCLAIBBAMBMA8GDSsGAQQBga0hgiwBAQQwDQYLKwYBBAGB
+rSGCLB4wCQYDVR0TBAIwADALBgNVHQ8EBAMCBeAwHQYDVR0lBBYwFAYIKwYBBQUH
+AwIGCCsGAQUFBwMBMB0GA1UdDgQWBBSGIY/ZZD7VJ2s/fIl5bKlKV71I0DAfBgNV
+HSMEGDAWgBQjMkKe/mJCTvtO0BebeOftiow+eDAoBgNVHREEITAfgh1mZWRlcmF0
+aW9uLmN5Y2xvbmUtcHJvamVjdC5ldTCBgwYDVR0fBHwwejA7oDmgN4Y1aHR0cDov
+L2NkcDEucGNhLmRmbi5kZS90dS1iZXJsaW4tY2EvcHViL2NybC9jYWNybC5jcmww
+O6A5oDeGNWh0dHA6Ly9jZHAyLnBjYS5kZm4uZGUvdHUtYmVybGluLWNhL3B1Yi9j
+cmwvY2FjcmwuY3JsMIHTBggrBgEFBQcBAQSBxjCBwzAzBggrBgEFBQcwAYYnaHR0
+cDovL29jc3AucGNhLmRmbi5kZS9PQ1NQLVNlcnZlci9PQ1NQMEUGCCsGAQUFBzAC
+hjlodHRwOi8vY2RwMS5wY2EuZGZuLmRlL3R1LWJlcmxpbi1jYS9wdWIvY2FjZXJ0
+L2NhY2VydC5jcnQwRQYIKwYBBQUHMAKGOWh0dHA6Ly9jZHAyLnBjYS5kZm4uZGUv
+dHUtYmVybGluLWNhL3B1Yi9jYWNlcnQvY2FjZXJ0LmNydDANBgkqhkiG9w0BAQsF
+AAOCAQEAcD7me5NvAkGAAMQSxlDVtmHi6foUPNt9adzUh1HujfkpKj7SDffpvFzl
+qjQuzcyXT03k0mC5BzRVZcvhoTHO8iAN84zD98C26kWUW4rrnX0J0LNlJ6WuTwG8
+gvNWLsYAZQQQWfSgRUGQXMzCFgXa/pFe8En63eh49MHhMNMFCZ+CBzLCxJmtGqRR
+/GTZHsUfmLgMcM/i77wPSSTz/WJ1XqpSdTX3ZcqxHTj91Mkle4feDbs0esiRrgm+
+pEG48bIOW7zC1nhkztvEfA5XgHVh9HvCV/QoeHOpuzCv8brHbPQtj1sZi6EsFb89
+awjhhm+d45PRPp1X8A1+/JdMtBQbiQ==
+-----END CERTIFICATE-----
+},
+    client_options: {
+        port: 443,
+        scheme: "https",
+        host: "federation.cyclone-project.eu",
+        identifier: 'test',
+        redirect_uri: "http://cyclone-dev.snet.tu-berlin.de:3000/users/auth/cyclone_federation/callback",
+        authorization_endpoint: "/auth/realms/master/protocol/openid-connect/auth",
+        token_endpoint: "/auth/realms/master/protocol/openid-connect/token",
+        userinfo_endpoint: "/auth/realms/master/protocol/openid-connect/userinfo"
+    }
+  }
 
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or

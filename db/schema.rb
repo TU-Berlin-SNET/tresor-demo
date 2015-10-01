@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130517133446) do
+ActiveRecord::Schema.define(version: 20150930134448) do
 
   create_table "barcodes", force: :cascade do |t|
     t.integer  "number",     null: false
@@ -127,6 +127,16 @@ ActiveRecord::Schema.define(version: 20130517133446) do
     t.datetime "updated_at"
   end
 
+  create_table "sessions", force: :cascade do |t|
+    t.string   "session_id", null: false
+    t.text     "data"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "sessions", ["session_id"], name: "index_sessions_on_session_id", unique: true
+  add_index "sessions", ["updated_at"], name: "index_sessions_on_updated_at"
+
   create_table "site_configurations", force: :cascade do |t|
     t.string   "name",                              null: false
     t.boolean  "geolocation_login", default: false
@@ -156,10 +166,14 @@ ActiveRecord::Schema.define(version: 20130517133446) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "username"
+    t.string   "provider"
+    t.string   "uid"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
+  add_index "users", ["provider"], name: "index_users_on_provider"
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  add_index "users", ["uid"], name: "index_users_on_uid"
 
   create_table "weights", force: :cascade do |t|
     t.float    "value"

@@ -1,0 +1,3 @@
+[submodule "vendor/gems/omniauth-openid-connect"]
+	path = vendor/gems/omniauth-openid-connect
+	url = git@github.com:cyclone-project/omniauth-openid-connect.git
